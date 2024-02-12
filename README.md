@@ -1,5 +1,7 @@
 # MR lit
 
+Credits - [@MR_lit](https://twitter.com/Mendelian_lit)
+
 1. Go to https://pubmed.ncbi.nlm.nih.gov
 2. Search for "Mendelian randomisation" [Title] OR "Mendelian randomization" [Title]
 3. Click Save
