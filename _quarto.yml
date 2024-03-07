@@ -13,6 +13,5 @@ format:
   html:
     toc: true
     link-external-icon: true
-    format:
     toc-depth: 4
     embed-resources: true
