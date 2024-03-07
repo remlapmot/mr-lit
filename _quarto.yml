@@ -1,3 +1,10 @@
 project:
   type: website
   output-dir: docs
+
+website:
+  title: New PuBMed publicaions including Mendelian randomi[s/z]ation in the title only
+  repo-url: https://github.com/remlapmot/mr-lit
+  repo-actions: source
+  repo-branch: main
+  site-url: https://remlapmot.github.io/mr-lit/
