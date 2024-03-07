@@ -8,3 +8,10 @@ website:
   repo-actions: source
   repo-branch: main
   site-url: https://remlapmot.github.io/mr-lit/
+
+format:
+  html:
+    toc: true
+    link-external-icon: true
+    format:
+    toc-depth: 4
