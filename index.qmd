@@ -50,7 +50,7 @@ outfile <- paste0(outfroot, "_", gsub("-", "", Sys.Date()), ".csv")
 
 ## Load data ####
 rdat <- read_csv(file.path(fpath, fname))
-max_pubmed_date <- max(rdat$`Create Date`, na.rm = T)
+max_pubmed_date <- max(rdat$`Create Date`, na.rm = TRUE)
 
 time_levels <- c("weeks", "months", "years")
 
