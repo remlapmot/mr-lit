@@ -1,5 +1,6 @@
 ---
 title: "New PuBMed publicaions including Mendelian randomi[s/z]ation in the title only"
+author: "MRC IEU"
 ---
 
 ```{r}
