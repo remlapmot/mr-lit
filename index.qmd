@@ -1,3 +1,6 @@
+---
+title: "New PuBMed publicaions including Mendelian randomi[s/z]ation in the title only"
+---
 ```{r}
 library(dplyr)
 library(readr)
