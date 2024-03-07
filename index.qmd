@@ -93,8 +93,8 @@ res <- bind_rows(lapply(c(time_levels), function(z) {
 
 ## plot ####
 p <- ggplot(res |>
-  filter(time_level == "Weeks" & pubmed_date != max(pubmed_date, na.rm = F)), aes(pubmed_date, n_publications)) +
-  # geom_smooth(se=F,colour='black')+
+  filter(time_level == "Weeks" & pubmed_date != max(pubmed_date, na.rm = FALSE)), aes(pubmed_date, n_publications)) +
+  # geom_smooth(se = FALSE, colour = 'black')+
   geom_point(size = .25, colour = mycol, alpha = 1) +
   geom_line(alpha = .75, colour = mycol) +
   geom_line(data = res %>% filter(time_level == "Weeks"), linetype = 2, alpha = .75, colour = mycol) +
