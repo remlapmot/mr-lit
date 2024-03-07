@@ -1,6 +1,7 @@
 ---
 title: "New PuBMed publicaions including Mendelian randomi[s/z]ation in the title only"
 ---
+
 ```{r}
 library(dplyr)
 library(readr)
@@ -44,14 +45,14 @@ time_levels=c("weeks","months","years")
 
 ## loop through time levels
 res=bind_rows(lapply(c(time_levels),function(z){
-  
+
   ## assign time groups then remove record duplications from e.g. pub comments
   dat=rdat|>
-    mutate(tend=ceiling_date(`Create Date`,unit=z)-1)|> 
+    mutate(tend=ceiling_date(`Create Date`,unit=z)-1)|>
     group_by(Title,Authors)|>
     filter(`Create Date`==min(`Create Date`))|>
     ungroup()
-  
+
   ## ensure all date rows exist even as zero.
   agg=left_join(crossing(
     tend=seq.Date(from=min(dat$tend),to=max(dat$tend),by=paste(1,gsub("s$","",z))))|>
@@ -60,13 +61,13 @@ res=bind_rows(lapply(c(time_levels),function(z){
       group_by(tend)|>
       summarise(n=as.numeric(n()),.groups='drop'),by=join_by(tend))|>
     mutate(n=if_else(!is.finite(n),as.numeric(0),n))|>
-    ungroup()|> 
-    mutate(time_level=z) 
+    ungroup()|>
+    mutate(time_level=z)
   agg
-}))|> 
-  select(pubmed_date=tend,n_publications=n,time_level) |> 
-  mutate(cap_verb=cap_verb,file_name=fname) |> 
-  mutate(time_level=stringr::str_to_title(time_level)) |> 
+}))|>
+  select(pubmed_date=tend,n_publications=n,time_level) |>
+  mutate(cap_verb=cap_verb,file_name=fname) |>
+  mutate(time_level=stringr::str_to_title(time_level)) |>
   mutate(last_pubmed_date=max_pubmed_date)
 
 ## write ####
@@ -74,14 +75,14 @@ res=bind_rows(lapply(c(time_levels),function(z){
 
 
 ## plot ####
-p=ggplot(res|> 
+p=ggplot(res|>
            filter(time_level == "Weeks" & pubmed_date!=max(pubmed_date,na.rm=F)),aes(pubmed_date,n_publications))+
   # geom_smooth(se=F,colour='black')+
   geom_point(size=.25,colour=mycol,alpha=1)+
   geom_line(alpha=.75,colour=mycol)+
   geom_line(data=res %>% filter(time_level == "Weeks"),linetype=2,alpha=.75,colour=mycol)+
   scale_x_date(date_minor_breaks="1 year") +
-  
+
   labs(x="Date",
        y=paste(ylab_root,"per week"),
        caption=paste("Most recent publication date:", max(subset(res, time_level=="Weeks")$pubmed_date)),
