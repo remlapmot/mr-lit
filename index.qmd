@@ -107,6 +107,10 @@ p <- ggplot(res |>
   ) +
   theme_mrlit()
 p
+```
+
+```{r}
+#| include: false
 d <- max(subset(res, time_level == "Weeks")$pubmed_date)
 
 ggsave(p, file = paste0("mr-weeks-", d, ".pdf"), width = 8, height = 4.5)
