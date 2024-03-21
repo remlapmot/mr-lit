@@ -48,8 +48,8 @@ theme_mrlit <- function(...) {
 }
 
 ## static vars
-fpath <- "."
-fname <- "csv-Mendelianr-set.csv"
+# fpath <- "."
+# fname <- "csv-Mendelianr-set.csv"
 cap_verb <- "Data from PubMed search for Mendelian randomi[s/z]ation, title only. "
 xlab <- "Date"
 ylab_root <- "New PubMed Entries"
@@ -60,12 +60,15 @@ outfroot <- "mrlit_pubmed"
 outfile <- paste0(outfroot, "_", gsub("-", "", Sys.Date()), ".csv")
 
 ## Load data ####
-rdat <- read_csv(file.path(fpath, fname))
-max_pubmed_date <- max(rdat$`Create Date`, na.rm = TRUE)
+rdat <- M # read_csv(file.path(fpath, fname))
+max_pubmed_date <- max(rdat$PY, na.rm = TRUE) # max(rdat$`Create Date`, na.rm = TRUE)
 
 time_levels <- c("weeks", "months", "years")
+```
 
-
+```{r}
+#| eval: false
+#| include: false
 ## Time-wise summary ####
 
 ## loop through time levels
@@ -76,7 +79,7 @@ res <- bind_rows(lapply(c(time_levels), function(z) {
     group_by(Title, Authors) |>
     filter(`Create Date` == min(`Create Date`)) |>
     ungroup()
-
+  
   ## ensure all date rows exist even as zero.
   agg <- left_join(
     crossing(
@@ -118,6 +121,11 @@ p <- ggplot(res |>
   ) +
   theme_mrlit()
 p
+```
+
+```{r}
+# Simpler plot
+
 ```
 
 ```{r}
