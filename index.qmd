@@ -23,6 +23,15 @@ library(ggplot2)
 ```
 
 ```{r}
+library(pubmedR)
+
+query <- "Mendelian randomization[Title/Abstract] AND english[LA]
+           AND Journal Article[PT] AND 2000:2020[DP]"
+D <- pmQueryTotalCount(query = query, api_key = NULL)
+M <- pmApi2df(D)
+```
+
+```{r}
 ## plot settings
 theme_mrlit <- function(...) {
   theme_classic(base_size = 14) %+replace%
