@@ -26,8 +26,9 @@ library(ggplot2)
 library(pubmedR)
 
 query <- "Mendelian randomization[Title/Abstract] AND english[LA]
+api_key <- Sys.getenv('PUBMED_API_KEY')
            AND Journal Article[PT] AND 2000:2020[DP]"
-D <- pmQueryTotalCount(query = query, api_key = NULL)
+D <- pmQueryTotalCount(query = query, api_key = api_key)
 M <- pmApi2df(D)
 ```
 
