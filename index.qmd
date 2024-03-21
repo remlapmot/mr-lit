@@ -20,7 +20,9 @@ library(readr)
 library(lubridate)
 library(tidyr)
 library(ggplot2)
+```
 
+```{r}
 ## plot settings
 theme_mrlit <- function(...) {
   theme_classic(base_size = 14) %+replace%
