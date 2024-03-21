@@ -4,7 +4,7 @@ author: "MRC IEU"
 date: "2024-03-07"
 date-modified: last-modified
 knitr:
-  opts_chunk: 
+  opts_chunk:
     collapse: true
     comment: "#>"
     message: false
