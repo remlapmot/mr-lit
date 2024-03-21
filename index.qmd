@@ -26,9 +26,8 @@ library(ggplot2)
 library(pubmedR)
 
 api_key <- Sys.getenv('PUBMED_API_KEY')
-query <- "Mendelian randomization[Title] AND english[LA]
-           AND Journal Article[PT] AND 2000:2020[DP]"
-D <- pmQueryTotalCount(query = query, api_key = api_key)
+query <- "(Mendelian randomization[Title]) OR (Mendelian randomisation[Title]) AND (english[LA]) AND (Journal Article[PT]) AND (2000:2020[DP])"
+D <- pmApiRequest(query = query, limit = 5000, api_key = api_key)
 M <- pmApi2df(D)
 ```
 
